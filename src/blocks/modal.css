@@ -35,6 +35,19 @@
   width: 100%;
   padding: 0;
 }
+#avatar-edit-container {
+  width: 430px;
+  height: 272px;
+}
+
+#delete-card-container {
+  width: 430px;
+  height: 181px;
+}
+.avatar__edit-button:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
 .modal__edit-close {
   position: absolute;
   width: 40px;
@@ -71,7 +84,7 @@
   width: 330px;
 }
 .modal__form {
-  margin: 0 36px;
+  margin-left: 36px;
   max-width: 358px;
 }
 .modal__fieldset {
@@ -85,7 +98,6 @@
   margin: 0;
   padding: 0;
 }
-
 .modal__input {
   border: 1px rgba(0, 0, 0, 0.2);
   border-style: none none solid;
@@ -96,7 +108,6 @@
   margin-bottom: 5px;
   width: 100%;
 }
-
 .modal__error_visible {
   border-bottom-color: #ff0000;
   width: 358px;
@@ -172,8 +183,36 @@ span[id$="-error"] {
   color: #fff;
   margin-top: 5px;
 }
+.avatar__edit-button {
+  background-image: url("../images/edit.svg");
+  width: 26px;
+  height: 26px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  top: 86pxpx;
+  left: 45px;
+  border: none;
+  visibility: visible;
+  pointer-events: all;
+  display: flex;
+  position: absolute;
+  transition: opacity 1s ease-in-out;
+}
+@media screen and (max-width: 800px) {
+  .avatar__edit-button {
+  left: 1px;
+  margin: 0;
+  padding: 0;
+  top: -76px;
+  display: flex;
+  position: relative;
+}
+    
+  }
 
 @media screen and (max-width: 585px) {
+  
   #preview-container {
     max-height: 299px;
     margin-bottom: 133px;
