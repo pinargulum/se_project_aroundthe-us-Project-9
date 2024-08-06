@@ -27,6 +27,8 @@
     },
     "dependencies": {
         "core-js": "3.23.5",
+        "module": "^1.2.5",
+        "node": "^20.16.0",
         "node_module": "^0.0.0"
     }
 }
