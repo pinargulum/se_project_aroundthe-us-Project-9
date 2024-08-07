@@ -116,6 +116,7 @@ function handleCardDelete(cardData) {
     api
       .deleteCard({ cardId })
       .then(() => {
+        cardData.removeCards();
         cardDeletePopup.close();
       })
       .catch((err) => {
