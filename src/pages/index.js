@@ -19,7 +19,6 @@ import {
   newName,
   newJob,
   formData,
-  
 } from "../Utility/Constant.js";
 
 const api = new Api({
@@ -109,18 +108,18 @@ function handleAvatarFormSubmit({ link }) {
 
 function handleCardDelete(cardData) {
   cardDeletePopup.open();
-  
+
+  formValidators["card-delete-form"].enableValidation();
   cardDeletePopup.setConfirmSubmit(() => {
+    const cardId = cardData._id;
     api
-      .deleteCard({ cardId: cardData._id  })
+      .deleteCard({ cardId })
       .then(() => {
         cardDeletePopup.close();
-        formValidators["card-delete-form"].enableValidation();
       })
       .catch((err) => {
         console.error(err);
       });
-      
   });
 }
 
@@ -128,15 +127,15 @@ function handleCardLike(cardData) {
   let cardId = cardData._id;
   let isLiked = cardData.isLiked;
   if (isLiked === !isLiked) {
-    api.toggleCardLike(cardId , isLiked)
-    .then(() => {
-     cardData.isliked = !isLiked
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-  
-}
+    api
+      .toggleCardLike(cardId, isLiked)
+      .then(() => {
+        cardData.isliked = !isLiked;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
 }
 function handleImageClick(data) {
   previewImagePopup.open(data);
@@ -163,9 +162,8 @@ profileEditButton.addEventListener("click", () => {
   formValidators["profile-edit-form"].resetValidation();
   profileEditPopup.open();
   const { title, description } = userInfo.getUserInfo();
- formData.description.value = description;
+  formData.description.value = description;
   formData.title.value = title;
-  
 });
 
 profileAddButton.addEventListener("click", () => {

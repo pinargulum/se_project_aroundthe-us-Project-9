@@ -6,10 +6,10 @@ export default class PopupWithImage extends Popup {
     this.imageText = document.querySelector(".modal__text");
   }
 
-  open(data) {
-    this.modalImage.src = data._link;
-    this.modalImage.alt = data._name;
-    this.imageText.textContent = data._name;
+  open(cardData) {
+    this.modalImage.src = cardData.link;
+    this.modalImage.alt = cardData.name;
+    this.imageText.textContent = cardData.name;
     super.open();
   }
 }
