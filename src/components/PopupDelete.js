@@ -19,6 +19,7 @@ export default class PopupDelete extends Popup {
   setEventListeners() {
     super.setEventListeners();
     this._popupForm.addEventListener("submit", (evt) => {
+      
       evt.preventDefault();
       this._handleFormSubmit();
     });
