@@ -19,6 +19,7 @@ import {
   newName,
   newJob,
   formData,
+  cardElement,
 } from "../Utility/Constant.js";
 
 const api = new Api({

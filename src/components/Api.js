@@ -104,6 +104,7 @@ export default class Api {
       });
   }
 
+
  async toggleCardLike(cardId, isLiked ) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: isLiked ? "PUT" : "DELETE",
