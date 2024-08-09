@@ -39,7 +39,7 @@ export const newJob = document.querySelector("#modal-job-input");
 export const modalAddPlaceTitleInput =
   cardAddModal.querySelector("#modal-place-input");
 export let formData = { title: newName, description: newJob };
-export const profileData = { name: newName, about: newJob };
+export const avatarData = { avatar: newAvatar };
 export const modalAddImageLinkInput =
   cardAddModal.querySelector("#modal-link-input");
 export const profileEditForm = document.forms["modal-edit-form"];
@@ -59,7 +59,7 @@ export const cardDeleteButton = cardElement.querySelector(
   ".card__delete-button"
 );
 export const deleteSubmit = cardElement.querySelector("#delete-yes-button");
-export const avatar = document.querySelector(".profile__image");
+//export const avatar = document.querySelector(".profile__image");
 
 export const config = {
   formElement: ".modal__form",

@@ -44,10 +44,7 @@
   width: 430px;
   height: 181px;
 }
-.avatar__edit-button:hover {
-  opacity: 0.5;
-  cursor: pointer;
-}
+
 .modal__edit-close {
   position: absolute;
   width: 40px;
@@ -193,11 +190,17 @@ span[id$="-error"] {
   top: 86pxpx;
   left: 45px;
   border: none;
-  visibility: visible;
+  opacity: 0;
   pointer-events: all;
-  display: flex;
+  display: none;
   position: absolute;
+  
+}
+.avatar__edit-button:hover {
+  opacity: 1;
+  cursor: pointer;
   transition: opacity 1s ease-in-out;
+  z-index: 1;
 }
 @media screen and (max-width: 800px) {
   .avatar__edit-button {
@@ -278,5 +281,4 @@ span[id$="-error"] {
     right: 10px;
   }
 }
-
 

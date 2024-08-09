@@ -78,6 +78,10 @@
   object-fit: cover;
   background-position: center;
   margin-right: 24px;
+  display: block;
+}
+.profile__image:hover {
+  display: block;
 }
 
 .profile__wrapper {

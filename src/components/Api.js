@@ -6,7 +6,7 @@ export default class Api {
     this._headers = options.headers;
   }
 
-  async getUser() {
+  async getUser(data) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
       headers: this._headers,
