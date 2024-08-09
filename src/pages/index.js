@@ -48,13 +48,14 @@ api.getInitialCards().then((data) => {
   section = new Section({ items: data, renderer: createCard }, ".cards__list");
   section.renderItems();
 });
-api.getUser().then(() => {
+api.getUser().then((data) => {
   userInfo = new UserInfo(
     ".profile__title",
     ".profile__description",
     ".profile__image"
   );
-  userInfo.getUserInfo();
+  userInfo.setUserInfo({ title: data.name, description: data.about });
+  userInfo.changeAvatarImage(data.avatar)
 });
 
 function handleProfileFormSubmit(formData) {
