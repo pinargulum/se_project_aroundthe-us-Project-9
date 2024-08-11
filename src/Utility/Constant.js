@@ -38,7 +38,7 @@ export const newName = document.querySelector("#modal-user-input");
 export const newJob = document.querySelector("#modal-job-input");
 export const modalAddPlaceTitleInput =
   cardAddModal.querySelector("#modal-place-input");
-export let formData = { title: newName, description: newJob };
+export const formData = { title: newName, description: newJob };
 export const avatarData = { avatar: newAvatar };
 export const modalAddImageLinkInput =
   cardAddModal.querySelector("#modal-link-input");

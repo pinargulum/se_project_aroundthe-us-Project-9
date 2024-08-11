@@ -65,13 +65,13 @@ api.getUser().then((data) => {
     console.error(err);
   });
 
-function handleProfileFormSubmit(formData) {
+function handleProfileFormSubmit(data) {
   profileSaveButton.textContent = "Saving...";
-  const profileData = { name: newName.value, about: newJob.value };
+  const profileData = ({ name: data.title, about: data.description })
   api
     .editProfile(profileData)
     .then(() => {
-      userInfo.setUserInfo(formData);
+      userInfo.setUserInfo({ title: data.name, description: data.about });
       profileEditPopup.close();
     })
     .catch((err) => {
