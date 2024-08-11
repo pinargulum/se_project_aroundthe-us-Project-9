@@ -130,9 +130,9 @@ function handleCardLike(cardData) {
   let cardId = cardData._id;
   let isLiked = cardData.isLiked;
   api
-    .toggleCardLike(cardId, isLiked)
-    .then(() => {
-      cardData.updateLikes(cardData)
+    .toggleCardLike(cardId, !isLiked)
+    .then((data) => {
+      cardData.likeCards(data.isLiked);
     })
     .catch((err) => {
       console.error(err);
