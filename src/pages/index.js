@@ -33,7 +33,7 @@ const api = new Api({
 let section;
 let userInfo;
 
-api.userInfoAndCards();
+
 function createCard(cardData) {
   const card = new Card(
     cardData,
@@ -47,7 +47,11 @@ function createCard(cardData) {
 api.getInitialCards().then((data) => {
   section = new Section({ items: data, renderer: createCard }, ".cards__list");
   section.renderItems();
-});
+})
+  .catch((err) => {
+    console.error(err);
+  })
+
 api.getUser().then((data) => {
   userInfo = new UserInfo(
     ".profile__title",
@@ -55,12 +59,15 @@ api.getUser().then((data) => {
     ".profile__image"
   );
   userInfo.setUserInfo({ title: data.name, description: data.about });
-  userInfo.changeAvatarImage(data.avatar);
-});
+  userInfo.changeAvatarImage(data.avatar)
+})
+  .catch((err) => {
+    console.error(err);
+  });
 
 function handleProfileFormSubmit(formData) {
   profileSaveButton.textContent = "Saving...";
-  let profileData = { name: newName.value, about: newJob.value };
+  const profileData = { name: newName.value, about: newJob.value };
   api
     .editProfile(profileData)
     .then(() => {
@@ -110,13 +117,12 @@ function handleAvatarFormSubmit({ link }) {
 
 function handleCardDelete(cardData) {
   cardDeletePopup.open();
-
-  formValidators["card-delete-form"].enableValidation();
   cardDeletePopup.setConfirmSubmit(() => {
     const cardId = cardData._id;
     api
       .deleteCard({ cardId })
       .then(() => {
+        formValidators["card-delete-form"].enableValidation();
         cardData.removeCards();
         cardDeletePopup.close();
       })
@@ -127,8 +133,8 @@ function handleCardDelete(cardData) {
 }
 
 function handleCardLike(cardData) {
-  let cardId = cardData._id;
-  let isLiked = cardData.isLiked;
+  const cardId = cardData._id;
+  const isLiked = cardData.isLiked;
   api
     .toggleCardLike(cardId, !isLiked)
     .then((data) => {

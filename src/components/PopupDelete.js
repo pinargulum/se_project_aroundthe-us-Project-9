@@ -1,6 +1,5 @@
-
 import Popup from "../components/Popup.js";
-import Card from "../components/Card.js";
+
 export default class PopupDelete extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
@@ -9,13 +8,7 @@ export default class PopupDelete extends Popup {
   setConfirmSubmit(handleFormSubmit) {
     this._handleFormSubmit = handleFormSubmit;
   }
-  open() {
-    super.open();
-  }
-  close() {
-    super.close();
-    
-  }
+
   setEventListeners() {
     super.setEventListeners();
     this._popupForm.addEventListener("submit", (evt) => {
