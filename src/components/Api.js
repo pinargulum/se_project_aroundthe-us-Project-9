@@ -6,7 +6,7 @@ export default class Api {
     this._headers = options.headers;
   }
 
-  async getUser(data) {
+  async getUser() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
       headers: this._headers,
@@ -105,7 +105,7 @@ export default class Api {
   }
 
 
- async toggleCardLike(cardId, isLiked ) {
+  async toggleCardLike(cardId, isLiked ) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: isLiked ? "PUT" : "DELETE",
       headers: this._headers,

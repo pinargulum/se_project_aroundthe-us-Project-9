@@ -192,7 +192,6 @@ span[id$="-error"] {
   border: none;
   opacity: 0;
   pointer-events: all;
-  display: none;
   position: absolute;
   
 }

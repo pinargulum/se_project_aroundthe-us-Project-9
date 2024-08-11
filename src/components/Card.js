@@ -27,7 +27,8 @@ class Card {
 
     this._cardLikeButton.addEventListener("click", () => {
       this._handleCardLike(this);
-      this.likeCards();
+      //this.likeCards();
+      this.updateLikes();
     });
 
     this._cardImage.addEventListener("click", () => {
@@ -46,7 +47,8 @@ class Card {
   }
   likeCards() {
     this.isLiked = !this.isLiked;
-    this.updateLikes();
+    return this.isLiked;
+    //this.updateLikes();
   }
 
   updateLikes() {
@@ -55,6 +57,7 @@ class Card {
     } else {
       this._cardLikeButton.classList.remove("card__like-button_active");
     }
+     this.likeCards();
   }
 
   _getCardTemplate() {

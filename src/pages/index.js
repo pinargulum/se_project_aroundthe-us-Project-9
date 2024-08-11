@@ -55,7 +55,7 @@ api.getUser().then((data) => {
     ".profile__image"
   );
   userInfo.setUserInfo({ title: data.name, description: data.about });
-  userInfo.changeAvatarImage(data.avatar)
+  userInfo.changeAvatarImage(data.avatar);
 });
 
 function handleProfileFormSubmit(formData) {
@@ -129,17 +129,16 @@ function handleCardDelete(cardData) {
 function handleCardLike(cardData) {
   let cardId = cardData._id;
   let isLiked = cardData.isLiked;
-  if (isLiked === !isLiked) {
-    api
-      .toggleCardLike(cardId, isLiked)
-      .then(() => {
-        cardData.isliked = !isLiked;
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
+  api
+    .toggleCardLike(cardId, isLiked)
+    .then(() => {
+      cardData.updateLikes(cardData)
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
+
 function handleImageClick(data) {
   previewImagePopup.open(data);
 }
