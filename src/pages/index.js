@@ -33,7 +33,6 @@ const api = new Api({
 let section;
 let userInfo;
 
-
 function createCard(cardData) {
   const card = new Card(
     cardData,
@@ -44,34 +43,44 @@ function createCard(cardData) {
   );
   return card.generateCard();
 }
-api.getInitialCards().then((data) => {
-  section = new Section({ items: data, renderer: createCard }, ".cards__list");
-  section.renderItems();
-})
+api
+  .getInitialCards()
+  .then((data) => {
+    section = new Section(
+      { items: data, renderer: createCard },
+      ".cards__list"
+    );
+    section.renderItems();
+  })
   .catch((err) => {
     console.error(err);
-  })
+  });
 
-api.getUser().then((data) => {
-  userInfo = new UserInfo(
-    ".profile__title",
-    ".profile__description",
-    ".profile__image"
-  );
-  userInfo.setUserInfo({ title: data.name, description: data.about });
-  userInfo.changeAvatarImage(data.avatar)
-})
+api
+  .getUser()
+  .then((data) => {
+    userInfo = new UserInfo(
+      ".profile__title",
+      ".profile__description",
+      ".profile__image"
+    );
+    userInfo.setUserInfo({ title: data.name, description: data.about });
+    userInfo.changeAvatarImage(data.avatar);
+  })
   .catch((err) => {
     console.error(err);
   });
 
 function handleProfileFormSubmit(data) {
   profileSaveButton.textContent = "Saving...";
-  const profileData = ({ name: data.title, about: data.description })
+  const profileData = { name: data.title, about: data.description };
   api
     .editProfile(profileData)
-    .then(() => {
-      userInfo.setUserInfo({ title: data.name, description: data.about });
+    .then((data) => {
+      const title = data.name;
+      const description = data.about;
+
+      userInfo.setUserInfo({ title, description });
       profileEditPopup.close();
     })
     .catch((err) => {
@@ -118,11 +127,11 @@ function handleAvatarFormSubmit({ link }) {
 function handleCardDelete(cardData) {
   cardDeletePopup.open();
   cardDeletePopup.setConfirmSubmit(() => {
+    formValidators["card-delete-form"].enableValidation();
     const cardId = cardData._id;
     api
       .deleteCard({ cardId })
       .then(() => {
-        formValidators["card-delete-form"].enableValidation();
         cardData.removeCards();
         cardDeletePopup.close();
       })
