@@ -10,6 +10,7 @@ import PopupDelete from "../components/PopupDelete.js";
 import { data } from "autoprefixer";
 import {
   profileAddButton,
+  profileAddForm,
   profileEditButton,
   avatarEditButton,
   profileSaveButton,
@@ -98,7 +99,7 @@ function handleProfileFormCreate({ name, link }) {
       const cardElement = createCard(cardData);
       section.addItem(cardElement);
       profileCardPopup.close();
-      formValidators["card-delete-form"].resetValidation();
+      
     })
     .catch((err) => {
       console.error(err);
@@ -127,11 +128,11 @@ function handleAvatarFormSubmit({ link }) {
 function handleCardDelete(cardData) {
   cardDeletePopup.open();
   cardDeletePopup.setConfirmSubmit(() => {
-    formValidators["card-delete-form"].enableValidation();
     const cardId = cardData._id;
     api
       .deleteCard({ cardId })
       .then(() => {
+        formValidators["card-delete-form"].enableValidation();
         cardData.removeCards();
         cardDeletePopup.close();
       })
@@ -184,6 +185,9 @@ profileEditButton.addEventListener("click", () => {
 });
 
 profileAddButton.addEventListener("click", () => {
+  formValidators["profile-add-form"].resetValidation();
+  profileAddForm.reset();
+  
   profileCardPopup.open();
 });
 avatarEditButton.addEventListener("click", () => {

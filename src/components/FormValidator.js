@@ -71,6 +71,7 @@ export default class FormValidator {
       });
     });
     this._toggleButtonState();
+    
   }
 
   enableValidation() {
@@ -86,7 +87,9 @@ export default class FormValidator {
     this._inputElements.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });
-
-    this._disableSubmitButton();
+   this._setEventListeners();
+   this._disableSubmitButton();
+    
+    
   }
 }
